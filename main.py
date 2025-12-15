@@ -32,7 +32,7 @@ while game_is_on:
     screen.update()
     time.sleep(0.1)
 
-    # Print out scoreboard
+    # Initial print scoreboard
     scoreboard.create_scoreboard()
 
     # Keep moving snake forward
@@ -40,6 +40,7 @@ while game_is_on:
 
     # Check if snake and food collision
     if snake.head.distance(food) < 15:
+        # Refresh food location, add to scoreboard and reprint it
         food.refresh()
         scoreboard.score += 1
         scoreboard.create_scoreboard()
