@@ -33,7 +33,7 @@ while game_is_on:
     time.sleep(0.1)
 
     # Initial print scoreboard
-    scoreboard.create_scoreboard()
+    scoreboard.update_scoreboard()
 
     # Keep moving snake forward
     snake.move()
@@ -43,18 +43,18 @@ while game_is_on:
         # Refresh food location, add to scoreboard and reprint it
         food.refresh()
         snake.extend()
-        scoreboard.score += 1
-        scoreboard.create_scoreboard()
+        scoreboard.increase_score()
+        scoreboard.update_scoreboard()
 
     # Check if collision with wall
     if snake.head.xcor() > 280 or snake.head.xcor() < -300 or snake.head.ycor() > 300 or snake.head.ycor() < -290:
-        scoreboard.game_over()
-        game_is_on = False
+        scoreboard.reset_score()
+        snake.reset()
 
     # Check if collision with tail
     for segment in snake.segment[1:]:
         if snake.head.distance(segment) < 10:
-            scoreboard.game_over()
-            game_is_on = False
+            scoreboard.reset_score()
+            snake.reset()
 
 screen.exitonclick()
